@@ -1,0 +1,10 @@
+[Unit]
+Description=k34 home automation heat water monitor
+After=network.target
+
+[Service]
+ExecStart=/home/pi/git/k34/heat/water.sh
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
