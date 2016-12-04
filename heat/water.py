@@ -2,8 +2,10 @@
 
 import os
 import glob
-import paho.mqtt.client as mqtt
+import paho.mqtt.publish as publish
 import time
+
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -29,13 +31,13 @@ def read_temp(rf):
     temp_c = float(temp_string) / 1000.0
     return temp_c
 
-mqttc = mqtt.Client()
-
-mqttc.connect("k34.mine.nu", 1883, 60)
-
-while True:
+def logData():
   json = '{"temperature": {"feed": %f, "return": %f}}' % (read_temp(tf), read_temp(tr))
-  mqttc.publish("k34/heat/water", payload=json)
-  time.sleep(5)
+  try:
+    publish.single("k34/heat/water", payload=json, hostname="k34.mine.nu")
+  except:
+    pass
 
-mqttc.loop_forever()
+scheduler = BlockingScheduler()
+scheduler.add_job(logData, 'interval', seconds=30)
+scheduler.start()
