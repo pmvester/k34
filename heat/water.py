@@ -32,7 +32,7 @@ def read_temp(rf):
     return temp_c
 
 def logData():
-  json = '{"temperature": {"feed": %f, "return": %f}}' % (read_temp(tf), read_temp(tr))
+  json = '{"temperature": {"feed": %f, "return": %f}, "timestamp": %d}' % (read_temp(tf), read_temp(tr), int(time.time()*1000))
   try:
     publish.single("k34/heat/water", payload=json, hostname="k34.mine.nu")
   except:
