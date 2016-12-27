@@ -25,7 +25,7 @@ def my_callback(channel):
 
 def publishData( power ):
     try:
-        publish.single("k34/power", "{\"power\": %d}" % power, hostname="k34.mine.nu")
+        publish.single("k34/power", "{\"power\": %d, \"timestamp\": %d}" % (power, int(time.time())*1000), hostname="k34.mine.nu")
     except:
         pass
 
