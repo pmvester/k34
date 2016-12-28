@@ -39,5 +39,5 @@ def logData():
     pass
 
 scheduler = BlockingScheduler()
-scheduler.add_job(logData, 'interval', seconds=30)
+scheduler.add_job(logData, 'cron', minute='*/1')
 scheduler.start()
