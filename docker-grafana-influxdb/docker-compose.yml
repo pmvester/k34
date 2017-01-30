@@ -1,0 +1,20 @@
+influxdb:
+  image: "registry.ng.bluemix.net/pmvester/influxdb:latest"
+  container_name: influxdb
+  ports:
+    - "request:8083:8083"
+    - "request:8086:8086"
+  env_file:
+    - 'env.influxdb'
+  volumes:
+    - influxdb:/var/lib/influxdb:rw
+
+grafana:
+  image: "registry.ng.bluemix.net/pmvester/grafana:latest"
+  container_name: grafana
+  ports:
+    - "request:3000:3000"
+  links:
+    - influxdb
+#  volumes:
+#    - grafana:/var/lib/grafana:rw
