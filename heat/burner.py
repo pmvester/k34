@@ -12,18 +12,20 @@ class AggregatedState:
 
   def __init__(self):
     self.threeState = False
-    self.state = [False, False, False]
+    self.state = [False, False, False, False, False]
     self.timestamp = int(time.time() * 1000)
 
   def getState(self):
     return self.threeState
 
   def setState(self, s):
+    self.state[4] = self.state[3]
+    self.state[3] = self.state[2]
     self.state[2] = self.state[1]
     self.state[1] = self.state[0]
     self.state[0] = s
-    allTrue = self.state[0] and self.state[1] and self.state[2]
-    allFalse = not (self.state[0] or self.state[1] or self.state[2])
+    allTrue = self.state[0] and self.state[1] and self.state[2] and self.state[3] and self.state[4]
+    allFalse = not (self.state[0] or self.state[1] or self.state[2] or self.state[3] or self.state[4])
     if allTrue and not self.threeState:
       self.timestamp = int(time.time() * 1000)
       self.threeState = True
