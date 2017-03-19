@@ -92,6 +92,7 @@ while True:
   newState = burner.getState()
   if newState != previousState:
     publishData(burner.timestamp, newState)
+    updateFlag = False
   elif updateFlag:
     publishData(time.time() * 1000, newState)
     updateFlag = False
