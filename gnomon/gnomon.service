@@ -1,0 +1,8 @@
+[Unit]
+Description=Sun azimuth and elevation service
+
+[Service]
+ExecStart=/home/chip/git/k34/gnomon/gnomon.sh
+
+[Install]
+WantedBy=multi-user.target
