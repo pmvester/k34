@@ -1,0 +1,8 @@
+[Unit]
+Description=Garage temperature sensor
+
+[Service]
+ExecStart=/home/chip/git/k34/tempout/tempgarage.sh
+
+[Install]
+WantedBy=multi-user.target
