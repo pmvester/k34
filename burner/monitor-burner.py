@@ -33,12 +33,16 @@ scheduler.add_job(setFlag, 'cron', minute='*/1', misfire_grace_time=30)
 scheduler.start()
 
 while True:
-  previousState = burner.getState()
-  burner.measure()
-  newState = burner.getState()
-  if newState != previousState:
-    publishData(burner.timestamp, newState)
-    updateFlag = False
-  elif updateFlag:
-    publishData(createTimestamp(), newState)
-    updateFlag = False
+  try:
+    previousState = burner.getState()
+    burner.measure()
+    newState = burner.getState()
+    if newState != previousState:
+      publishData(burner.timestamp, newState)
+      updateFlag = False
+    elif updateFlag:
+      publishData(createTimestamp(), newState)
+      updateFlag = False
+  except:
+    console.log('exception caught')
+    pass
