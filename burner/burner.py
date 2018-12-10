@@ -39,7 +39,7 @@ class Burner:
   def measure(self):
     self.writebyte(TSLaddr, 0x01 | TSLcmd, HighLong)
     self.timestamp = createTimestamp()
-    time.sleep(0.5)
+    time.sleep(1.0)
 
     data = self.bus.read_i2c_block_data(TSLaddr, chan0 | TSLcmd, 2)
     data1 = self.bus.read_i2c_block_data(TSLaddr, chan1 | TSLcmd, 2)
