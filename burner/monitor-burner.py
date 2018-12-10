@@ -44,5 +44,5 @@ while True:
       publishData(createTimestamp(), newState)
       updateFlag = False
   except:
-    console.log('exception caught')
+    logging.error('exception caught')
     pass
