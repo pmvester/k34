@@ -64,6 +64,17 @@ def on_message(client, userdata, msg):
         }
       ]
       db.write_points(json_body)
+    elif msg.topic == "k34/tempgarage":
+      json_body = [
+        {
+          "measurement": "tempgarage",
+          "time": pl["timestamp"] * 1000000,
+          "fields": {
+            "tempout": pl["tempgarage"]
+          }
+        }
+      ]
+      db.write_points(json_body)
     elif msg.topic == "k34/heat/burner":
       json_body = [
         {
@@ -75,6 +86,8 @@ def on_message(client, userdata, msg):
         }
       ]
       db.write_points(json_body)
+    else:
+      pass
 
 db = InfluxDBClient("localhost", 8086, "root", "root", "k34db")
 
