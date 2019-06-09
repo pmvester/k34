@@ -3,6 +3,8 @@ Description=Outdoor temperature sensor
 
 [Service]
 ExecStart=/home/pi/git/k34/tempout/tempout.sh
+WorkingDirectory=/home/pi/git/k34/tempout
+User=pi
 
 [Install]
 WantedBy=multi-user.target
