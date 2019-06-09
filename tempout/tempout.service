@@ -2,7 +2,7 @@
 Description=Outdoor temperature sensor
 
 [Service]
-ExecStart=/home/chip/git/k34/tempout/tempout.sh
+ExecStart=/home/pi/git/k34/tempout/tempout.sh
 
 [Install]
 WantedBy=multi-user.target

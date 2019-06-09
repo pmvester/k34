@@ -1,2 +1,2 @@
 #!/bin/sh
-python /home/chip/git/k34/tempout/tempout.py
+python /home/pi/git/k34/tempout/tempout.py
