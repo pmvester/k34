@@ -69,9 +69,9 @@ def on_message(client, userdata, msg):
         json_body = [
           {
             "measurement": "tempgarage",
-            "time": pl["timestamp"] * 1000000,
+            "time": long(time.time() * 1000000000),
             "fields": {
-              "tempout": pl["tempgarage"]
+              "tempout": pl["temperature"]
             }
           }
         ]
