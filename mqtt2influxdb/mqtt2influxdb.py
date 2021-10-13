@@ -50,7 +50,7 @@ def on_message(client, userdata, msg):
             "measurement": "power",
             "time": long(time.time() * 1000000000),
             "fields": {
-              "power": pl
+              "power": int(pl)
             }
           }
         ]
