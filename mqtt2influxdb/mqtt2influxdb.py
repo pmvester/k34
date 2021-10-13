@@ -12,6 +12,7 @@ def on_connect(client, userdata, flags, rc):
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
     client.subscribe("k34/#")
+    client.subscribe("sensors/#")
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
@@ -53,7 +54,6 @@ def on_message(client, userdata, msg):
             }
           }
         ]
-        print(json_body)
         db.write_points(json_body)
       elif msg.topic == "k34/tempout":
         json_body = [
