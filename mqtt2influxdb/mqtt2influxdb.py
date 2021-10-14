@@ -55,6 +55,17 @@ def on_message(client, userdata, msg):
           }
         ]
         db.write_points(json_body)
+      elif msg.topic == "sensors/power/p1meter/consumption":
+        json_body = [
+          {
+            "measurement": "powerc",
+            "time": long(time.time() * 1000000000),
+            "fields": {
+              "consumption": int(pl)
+            }
+          }
+        ]
+        db.write_points(json_body)
       elif msg.topic == "k34/tempout":
         json_body = [
           {
