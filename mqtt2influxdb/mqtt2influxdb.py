@@ -99,13 +99,14 @@ def on_message(client, userdata, msg):
           }
         ]
         db.write_points(json_body)
-      elif msg.topic == "k34/heat/burner":
+      elif msg.topic == "k34/matsal":
         json_body = [
           {
-            "measurement": "oilBurner",
-            "time": pl["timestamp"] * 1000000,
+            "measurement": "matsal",
+            "time": long(time.time() * 1000000000),
             "fields": {
-              "burner": pl["burner"]
+              "humidity": pl["humidity"],
+              "temperature": pl["temperature"]
             }
           }
         ]
